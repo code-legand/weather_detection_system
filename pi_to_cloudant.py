@@ -29,7 +29,7 @@ _id = str(uuid.uuid4()).replace('-', '')
 time = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%z")
 
 db.create_document({
-
+    'id': _id, 
     'device_id': device_id, 
     'timestamp': time, 
     'temperature': temperature,
