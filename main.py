@@ -127,6 +127,7 @@ def send_to_cloudant(transmit_data):
     db.create_document(transmit_data)
     
 def send_to_local(transmit_data):
+    serversocket.settimeout(value=5.0)
     (clientsocket, address)=serversocket.accept()
     rawdata=clientsocket.recv(1024).decode()
     info=rawdata.split('\r\n')
@@ -136,7 +137,6 @@ def send_to_local(transmit_data):
     
     clientsocket.sendall(transmit_data.encode())
     clientsocket.shutdown(SHUT_WR)
-    
     
 
 # =============================================================================

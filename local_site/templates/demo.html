@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>
+        Weather App
+    </title>
+    <style>
+        .rotate{
+            transform-origin: 100% 100%;
+            transform: rotate(270deg);
+        }
+        #myVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            }
+
+            .content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5);
+            color: #f1f1f1;
+            opacity: 0.8;
+            min-width: 100%;
+            min-height: 100%;
+            }
+    </style>
+</head>
+<body class="flex-column mb-3 mx-3" style="min-height: 100%">
+    <video autoplay muted loop id="myVideo">
+        <source src="../static/background2.mp4" type="video/mp4">
+      </video>
+    
+      <div class="content">
+        <div class="container mt-5" style="min-height: 70vh;">
+            <div class="row d-flex flex-nowrap justify-content-between">
+                <div class="col-4">
+                    <div class="w-100 fs-2 fw-semibold ps-2">
+                        Device0001
+                    </div>
+                    <div class="w-100 fw-semibold">
+                        <span class="fw-bolder" style="font-size: 15vw;">89</span><span class="fw-light" id="unitSym" style="font-size: 10vw;">°F</span>
+                    </div>
+                    <div>
+                        <button class="btn btn-dark border border-dark-subtle rounded-pill w-100" id="unitButton" onclick="changeUnit()">View in Celsius</button>
+                    </div>
+                </div>
+                <div class="col-4 offset-4 fs-2 fw-bolder text-end">
+                    <div class="rotate mt-5 text-nowrap display-6 fw-bolder">Light Rain Shower</div>
+                </div>
+            </div>
+        </div>
+        <div class="container h-20 mt-auto border border-4 rounded-pill p-2">
+            <div class="row">
+                <div class="col-4 border-end border-2 text-center">
+                    <div class="w-100 fs-2 fw-semibold">
+                        55%
+                    </div>
+                    <div class="w-100 fw-semibold">
+                        Humidity
+                    </div>
+                </div>
+                <div class="col-4 border-end border-2 text-center">
+                    <div class="w-100 fs-2 fw-semibold">
+                        29.5in
+                    </div>
+                    <div class="w-100 fw-semibold">
+                        Pressure
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <div class="w-100 fs-2 fw-semibold">
+                        0%
+                    </div>
+                    <div class="w-100 fw-semibold">
+                        Rain
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+      </div>
+    
+    <script src="../static/bootstrap.min.js"></script>
+    <script>
+        fahrenheitUnit = (temperature) => temperature;
+        celsiusUnit = (temperature) => (temperature - 32) * 5/9;
+        function changeUnit(){
+            var unit = document.getElementById("unitButton").innerHTML;
+            if (unit == "View in Celsius") {
+                document.getElementById("unitButton").innerHTML = "View in Fahrenheit";
+                document.getElementById("unitSym").innerHTML = "°C";
+            } else {
+                document.getElementById("unitButton").innerHTML = "View in Celsius";
+                document.getElementById("unitSym").innerHTML = "°F";
+            }
+        }
+        // // let myVar = setInterval(myTimer ,1000);
+        // function myTimer() {
+        //     var xhttp = new XMLHttpRequest();
+        //     xhttp.onreadystatechange = function() {
+        //         if (this.readyState == 4 && this.status == 200) {
+        //         // Typical action to be performed when the document is ready:
+        //         document.getElementById("demo").innerHTML = xhttp.responseText;
+        //         }
+        //     };
+        //     xhttp.open("GET", "http://localhost:8000", true);
+
+
+        // }
+    </script>
+</body>
+</html>
