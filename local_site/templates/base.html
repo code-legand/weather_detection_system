@@ -6,9 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/bootstrap.min.css">
     <link rel="stylesheet" href="static/styles.css">
+    <style>
+        .rotate{
+            transform-origin: 100% 100%;
+            transform: rotate(270deg);
+        }
+        #myVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            }
+
+            .content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5);
+            color: #f1f1f1;
+            opacity: 0.8;
+            min-width: 100%;
+            min-height: 100%;
+            }
+    </style>
     <title>
         Weather App
     </title>
+    
 </head>
 <body>
     {% block body %}

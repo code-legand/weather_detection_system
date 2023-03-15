@@ -1,7 +1,60 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<p id="demo"></p>
+<!-- <p id="demo"></p> -->
+<video autoplay muted loop id="myVideo">
+    <source src="../static/background2.mp4" type="video/mp4">
+  </video>
+
+  <div class="content">
+    <div class="container mt-5" style="min-height: 70vh;">
+        <div class="row d-flex flex-nowrap justify-content-between">
+            <div class="col-4">
+                <div class="w-100 fs-2 fw-semibold ps-2" id="device_id">
+                    Device0001
+                </div>
+                <div class="w-100 fw-semibold">
+                    <span class="fw-bolder" style="font-size: 15vw;" id="temperature">89</span><span class="fw-light" id="unitSym" style="font-size: 10vw;">°F</span>
+                </div>
+                <div>
+                    <button class="btn btn-dark border border-dark-subtle rounded-pill w-100" id="unitButton" onclick="changeUnit()">View in Celsius</button>
+                </div>
+            </div>
+            <div class="col-4 offset-4 fs-2 fw-bolder text-end">
+                <div class="rotate mt-5 text-nowrap display-6 fw-bolder" id="weather">Light Rain Shower</div>
+            </div>
+        </div>
+    </div>
+    <div class="container h-20 mt-auto border border-4 rounded-pill p-2">
+        <div class="row">
+            <div class="col-4 border-end border-2 text-center">
+                <div class="w-100 fs-2 fw-semibold" id="humidity">
+                    55%
+                </div>
+                <div class="w-100 fw-semibold">
+                    Humidity
+                </div>
+            </div>
+            <div class="col-4 border-end border-2 text-center">
+                <div class="w-100 fs-2 fw-semibold" id="pressure">
+                    29.5in
+                </div>
+                <div class="w-100 fw-semibold">
+                    Pressure
+                </div>
+            </div>
+            <div class="col-4 text-center">
+                <div class="w-100 fs-2 fw-semibold" id="rain">
+                    0%
+                </div>
+                <div class="w-100 fw-semibold">
+                    Rain
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
 
 {% endblock %}
 

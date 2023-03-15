@@ -7,7 +7,7 @@ Created on Fri Mar 10 22:42:42 2023
 
 from cloudant.client import Cloudant
 from datetime import datetime
-from random import randint, random
+from random import randint, random, choice
 import uuid
 
 # ACCOUNT_NAME = 
@@ -24,6 +24,8 @@ temperature = randint(50, 100)
 humidity = randint(0, 100)
 rain = randint(0, 100)
 pressure = 29+random()
+weather_map = ['Mostly Cloudy', 'Fair', 'Partly Cloudy', 'Cloudy', 'Thunder', 'Light Rain', 'Light Rain Shower', 'Fog', 'Rain Shower', 'Light Drizzle', 'Rain']
+weather = choice(weather_map)
 
 _id = str(uuid.uuid4()).replace('-', '')
 time = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%z")
@@ -36,6 +38,7 @@ db.create_document({
     'humidity': humidity, 
     'pressure': pressure, 
     'rain': rain, 
+    'weather': weather
 })
 
 
