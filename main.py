@@ -112,13 +112,13 @@ def send_forward(data):
     transmit_data={'device_id': device_id, 'timestamp': timestamp, 'temperature': temperature, 'pressure': pressure, 'humidity': humidity, 'rain': rain, 'day_or_night': day_or_night, 'weather': weather}
     transmit_data=json.dumps(transmit_data)
     
+    
     t1=threading.Thread(target=send_to_watson, args=(transmit_data))
     t2=threading.Thread(target=send_to_cloudant, args=(transmit_data))
     t3=threading.Thread(target=send_to_local, args=(transmit_data))
     t1.start()
     t2.start()
     t3.start()
-
 
 def send_to_watson(transmit_data):
     (rc, mid) = client.publish(topic_name, payload=transmit_data)
