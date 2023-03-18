@@ -1,6 +1,114 @@
 {% extends 'base.html' %}
 {% block body %}
-    <h1>Home</h1>
-    <p>Hello, {{ name }}!</p>
-    
+    <div class="container-fluid text-center" style="min-height: 100vh;">
+        <div class="row" style="min-height: 100vh;">
+            <div class="col-sm-4 col-12 border-end" style="min-height: 100vh;">
+                <div class="container d-flex align-content-between flex-wrap p-4" style="min-height: 100vh;">
+                    <div class="row w-100">
+                        <div class="col-12 border-bottom">
+                            <form class="d-flex" role="search">
+                                <input class="form-control me-2 border-0" type="search" placeholder="Device ID" aria-label="Device ID" style="box-shadow: none;">
+                                <button class="btn btn-outline-dark border-0" type="submit"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row w-100">
+                        <div class="col-12">
+                            <span class="fw-semibold" style="font-size: 10vw;" id="temperature">89</span><span class="fw-light" id="unitSym" style="font-size: 6vw;">°F</span>
+                        </div>
+                        <div class="col-12">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6 m-0"><span>Low </span><span>80</span><span>°F</span></div>
+                                    <div class="col-6 m-0"><span>High </span><span>90</span><span>°F</span></div>    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="w-100" style="height: 35vh;"></div>
+                        </div>
+                    </div>
+                    <div class="row w-100">
+                        <div class="col-12">
+                            <h3 class="fw-semibold">Creators</h3>
+                            <p class="fw-light m-0">Lorem ipsum</p>
+                            <p class="fw-light m-0">Dolor sit amet</p>
+                            <p class="fw-light m-0">Consectetur adipiscing elit</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 col-12 border-start" style="min-height: 100vh;">
+                <div class="container d-flex align-content-between flex-wrap p-4" style="min-height: 100vh;">
+                    <div class="row w-100">
+                        <div class="col-12 h3 fw-semibold border-bottom">
+                            Weather Detection System
+                        </div>
+                    </div>
+                    <div class="row w-100">
+                        <div class="col-12 fw-semibold display-3" >
+                            Light Rain Shower
+                        </div>
+                        <div class="col-12 mt-3">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis laborum blanditiis, cupiditate pariatur ut accusantium, adipisci, quam officiis porro maxime sapiente reiciendis rem eveniet asperiores ex! Molestias ipsam alias ipsum?
+                        </div>
+                    </div>
+                    <div class="row w-100">
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="col-12 w-100 fw-semibold fs-2 border-bottom mb-2">
+                                Humidity
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6 m-0"><span>Low </span><span>50</span><span>%</span></div>
+                                    <div class="col-6 m-0"><span>High </span><span>60</span><span>%</span></div>    
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="w-100" style="height: 25vh;"></div>
+                            </div>
+                            <div class="col-12 fs-3">
+                                55%
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="col-12 w-100 fw-semibold fs-2 border-bottom mb-2">
+                                Pressure
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6 m-0"><span>Low </span><span>29.0</span><span>in</span></div>
+                                    <div class="col-6 m-0"><span>High </span><span>30.0</span><span>in</span></div>    
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="w-100" style="height: 25vh;"></div>
+                            </div>
+                            <div class="col-12 fs-3">
+                                29.5%
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 mx-auto">
+                            <div class="col-12 w-100 fw-semibold fs-2 border-bottom mb-2">
+                                Rain
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6 m-0"><span>Low </span><span>0</span><span>%</span></div>
+                                    <div class="col-6 m-0"><span>High </span><span>100</span><span>%</span></div>    
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="w-100" style="height: 25vh;"></div>
+                            </div>
+                            <div class="col-12 fs-3">
+                                20%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>        
+
 {% endblock body %}
