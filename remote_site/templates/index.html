@@ -1,26 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body %}
-    <div class="container-fluid text-center" style="min-height: 100vh;">
+<!-- <video autoplay muted loop id="myVideo">
+    <source src="{% static 'background/background2.mp4' %}" type="video/mp4">
+</video> -->
+<div class="content">
+    <div class="container-fluid"
+        style="min-height: 100vh; font-family: 'Courier Montserrat', Courier, monospace;">
         <div class="row" style="min-height: 100vh;">
-            <div class="col-sm-4 col-12 border-end" style="min-height: 100vh;">
-                <div class="container d-flex align-content-between flex-wrap p-4" style="min-height: 100vh;">
-                    <div class="row w-100">
+            <div class="col-sm-4 col-12 border-end text-end" style="min-height: 100vh;">
+                <div class="container d-flex align-content-between flex-wrap p-4 pe-0" style="min-height: 100vh;">
+                    <div class="row w-100 bg-dark">
                         <div class="col-12 border-bottom">
                             <form class="d-flex" role="search">
-                                <input class="form-control me-2 border-0" type="search" placeholder="Device ID" aria-label="Device ID" style="box-shadow: none;">
-                                <button class="btn btn-outline-dark border-0" type="submit"><i class="fas fa-search"></i></button>
+                                <input class="form-control me-2 border-0 text-light" type="search" placeholder="Device ID"
+                                    aria-label="Device ID" style="box-shadow: none; background-color: transparent;">
+                                <button class="btn btn-outline-light border-0" type="submit"><i
+                                        class="fas fa-search"></i></button>
                             </form>
                         </div>
                     </div>
                     <div class="row w-100">
                         <div class="col-12">
-                            <span class="fw-semibold" style="font-size: 10vw;" id="temperature">89</span><span class="fw-light" id="unitSym" style="font-size: 6vw;">°F</span>
+                            <span class="fw-semibold" style="font-size: 10vw;" id="temperature">89</span><span
+                                class="fw-light" id="unitSym" style="font-size: 6vw;">°F</span>
                         </div>
                         <div class="col-12">
-                            <div class="container">
+                            <div class="container p-0">
                                 <div class="row">
                                     <div class="col-6 m-0"><span>Low </span><span>80</span><span>°F</span></div>
-                                    <div class="col-6 m-0"><span>High </span><span>90</span><span>°F</span></div>    
+                                    <div class="col-6 m-0"><span>High </span><span>90</span><span>°F</span></div>
                                 </div>
                             </div>
                         </div>
@@ -38,30 +47,32 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8 col-12 border-start" style="min-height: 100vh;">
+            <div class="col-sm-8 col-12 border-start text-start" style="min-height: 100vh;">
                 <div class="container d-flex align-content-between flex-wrap p-4" style="min-height: 100vh;">
-                    <div class="row w-100">
+                    <div class="row w-100 d-none d-sm-block">
                         <div class="col-12 h3 fw-semibold border-bottom">
                             Weather Detection System
                         </div>
                     </div>
                     <div class="row w-100">
-                        <div class="col-12 fw-semibold display-3" >
+                        <div class="col-12 fw-semibold display-3">
                             Light Rain Shower
                         </div>
                         <div class="col-12 mt-3">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis laborum blanditiis, cupiditate pariatur ut accusantium, adipisci, quam officiis porro maxime sapiente reiciendis rem eveniet asperiores ex! Molestias ipsam alias ipsum?
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis laborum blanditiis,
+                            cupiditate pariatur ut accusantium, adipisci, quam officiis porro maxime sapiente reiciendis
+                            rem eveniet asperiores ex! Molestias ipsam alias ipsum?
                         </div>
                     </div>
                     <div class="row w-100">
-                        <div class="col-12 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-md-4 p-3">
                             <div class="col-12 w-100 fw-semibold fs-2 border-bottom mb-2">
                                 Humidity
                             </div>
-                            <div class="container">
+                            <div class="container p-0">
                                 <div class="row">
                                     <div class="col-6 m-0"><span>Low </span><span>50</span><span>%</span></div>
-                                    <div class="col-6 m-0"><span>High </span><span>60</span><span>%</span></div>    
+                                    <div class="col-6 m-0"><span>High </span><span>60</span><span>%</span></div>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -71,14 +82,14 @@
                                 55%
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-md-4 p-3">
                             <div class="col-12 w-100 fw-semibold fs-2 border-bottom mb-2">
                                 Pressure
                             </div>
-                            <div class="container">
+                            <div class="container p-0">
                                 <div class="row">
                                     <div class="col-6 m-0"><span>Low </span><span>29.0</span><span>in</span></div>
-                                    <div class="col-6 m-0"><span>High </span><span>30.0</span><span>in</span></div>    
+                                    <div class="col-6 m-0"><span>High </span><span>30.0</span><span>in</span></div>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -88,14 +99,14 @@
                                 29.5%
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-4 mx-auto">
+                        <div class="col-12 col-sm-6 col-md-4 mx-auto p-3">
                             <div class="col-12 w-100 fw-semibold fs-2 border-bottom mb-2">
                                 Rain
                             </div>
-                            <div class="container">
+                            <div class="container p-0">
                                 <div class="row">
                                     <div class="col-6 m-0"><span>Low </span><span>0</span><span>%</span></div>
-                                    <div class="col-6 m-0"><span>High </span><span>100</span><span>%</span></div>    
+                                    <div class="col-6 m-0"><span>High </span><span>100</span><span>%</span></div>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -109,6 +120,7 @@
                 </div>
             </div>
         </div>
-    </div>        
+    </div>
+</div>
 
 {% endblock body %}

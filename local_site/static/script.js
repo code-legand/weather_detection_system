@@ -26,7 +26,7 @@ function changeUnit() {
 let myVar = setInterval(myTimer, 1000);
 function myTimer() {
     var XMLrequest = new XMLHttpRequest();
-    XMLrequest.open('GET', 'http://localhost:5000/send', true);
+    XMLrequest.open('GET', 'http://192.168.1.102:5000/send', true);
     XMLrequest.send();
     XMLrequest.onreadystatechange = function () {
         if (XMLrequest.readyState == 4 && XMLrequest.status == 200) {
@@ -40,7 +40,7 @@ function myTimer() {
             if (document.getElementById("unitButton").innerHTML == "View in Celsius") {
                 document.getElementById("temperature").innerHTML = fahrenheitUnit(data['temperature']);
             } else {
-                document.getElementById("temperature").innerHTML = int(celsiusUnit(data['temperature']));
+                document.getElementById("temperature").innerHTML = parseInt(celsiusUnit(data['temperature']));
             }
         }
     }
