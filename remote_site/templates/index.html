@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-<!-- <video autoplay muted loop id="myVideo">
-    <source src="{% static 'background/background2.mp4' %}" type="video/mp4">
-</video> -->
+
 <div class="content">
     <div class="container-fluid"
         style="min-height: 100vh; font-family: 'Courier Montserrat', Courier, monospace;">
@@ -34,7 +32,9 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="w-100" style="height: 35vh;"></div>
+                            <div class="mw-100 d-flex justify-content-end" style="height: 35vh;">
+                                <div id="temperature_chart_div" style="max-height: 35vh; width: 80%;"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="row w-100">
@@ -76,7 +76,9 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="w-100" style="height: 25vh;"></div>
+                                <div class="w-100" style="height: 25vh;">
+                                    <div id="humidity_chart_div" style="max-height: 25vh;"></div>
+                                </div>
                             </div>
                             <div class="col-12 fs-3">
                                 55%
@@ -93,7 +95,9 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="w-100" style="height: 25vh;"></div>
+                                <div class="w-100" style="height: 25vh;">
+                                    <div id="pressure_chart_div" style="max-height: 25vh;"></div>
+                                </div>
                             </div>
                             <div class="col-12 fs-3">
                                 29.5%
@@ -110,7 +114,9 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="w-100" style="height: 25vh;"></div>
+                                <div class="w-100" style="height: 25vh;">
+                                    <div id="rain_chart_div" style="max-height: 25vh;"></div>
+                                </div>
                             </div>
                             <div class="col-12 fs-3">
                                 20%
@@ -124,3 +130,5 @@
 </div>
 
 {% endblock body %}
+
+  

@@ -16,6 +16,9 @@ import json
 import threading
 from joblib import load
 
+import warnings
+warnings.filterwarnings("ignore")
+
 
 # =============================================================================
 # Initializations and connecion establishment
@@ -71,21 +74,21 @@ except:
     print("Watson IOT Connection failed:")
     
 # IBM Cloudant
-URL = 'https://8c5d6aa9-3760-4133-a2af-67b19e8e8139-bluemix.cloudantnosqldb.appdomain.cloud'
-API_KEY = 'Z9YhLhqkCJr0cFqsErZnzrm0uuCxExZUWGfx2mmByz16'
+URL = 'https://apikey-v2-2porvk0ltjx250fch5349iijd7z20mmkvm2cgao48mkf:70d9628dc2173b2ea7f6749ff06b1575@b2cf2182-108f-4d74-99d3-027d6846c573-bluemix.cloudantnosqldb.appdomain.cloud'
+API_KEY = 'PQ79KqrbVKEFLkTorUdqxKun1CkU0fikbDI4KephQh1-'
 
 try:
     cloudant_client = Cloudant.iam(None, API_KEY, url= URL, connect=True)
     db = cloudant_client['iot_data']
 except:
-    print("Cloudant Connection failed:")    
+    print("Cloudant Connection failed:")
 
 # Local Website
 serversocket=socket(AF_INET, SOCK_STREAM)
 try:
-    serversocket.bind(('localhost', 8000))
+    serversocket.bind(('127.0.0.1', 8000))
     serversocket.listen(5)
-    print("serving from localhost:8000")
+    print("serving from 127.0.0.1:8000")
 except:
     print("Socket Connection Error")
 
@@ -104,10 +107,10 @@ def send_forward(data):
     rain = data['rain']
     # day_or_night = data['day_or_night']
     timestamp=datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%z")
-    if datetime.now().hour()>18:
-        day_or_night = data['day_or_night']=0
+    if datetime.now().hour<18 and datetime.now().hour>6:
+        day_or_night=1
     else:
-        day_or_night = 1
+        day_or_night=0
     
     
     # [temperature	pressure	humidity	rain	day_or_night]
@@ -118,9 +121,9 @@ def send_forward(data):
     transmit_data=json.dumps(transmit_data)
     
     
-    t1=threading.Thread(target=send_to_watson, args=(transmit_data))
-    t2=threading.Thread(target=send_to_cloudant, args=(transmit_data))
-    t3=threading.Thread(target=send_to_local, args=(transmit_data))
+    t1=threading.Thread(target=send_to_watson, args=(transmit_data, ))
+    t2=threading.Thread(target=send_to_cloudant, args=(transmit_data, ))
+    t3=threading.Thread(target=send_to_local, args=(transmit_data, ))
     t1.start()
     t2.start()
     t3.start()
@@ -129,19 +132,22 @@ def send_to_watson(transmit_data):
     (rc, mid) = client.publish(topic_name, payload=transmit_data)
 
 def send_to_cloudant(transmit_data):
-    db.create_document(transmit_data)
+    db.create_document(json.loads(transmit_data))
     
 def send_to_local(transmit_data):
-    serversocket.settimeout(value=5.0)
-    (clientsocket, address)=serversocket.accept()
-    rawdata=clientsocket.recv(1024).decode()
-    info=rawdata.split('\r\n')
-    if len(info)>0:
-        for i in info:
-            print(i.strip('\r\n'))
-    
-    clientsocket.sendall(transmit_data.encode())
-    clientsocket.shutdown(SHUT_WR)
+    try:
+        serversocket.settimeout(5.0)
+        (clientsocket, address)=serversocket.accept()
+        rawdata=clientsocket.recv(1024).decode()
+        info=rawdata.split('\r\n')
+        if len(info)>0:
+            for i in info:
+                print(i.strip('\r\n'))
+        
+        clientsocket.sendall(transmit_data.encode())
+        clientsocket.shutdown(SHUT_WR)
+    except:
+        print("Socket Timeout")
     
 
 # =============================================================================
@@ -156,9 +162,9 @@ try:
         temperature = randint(50, 100)
         humidity = randint(0, 100)
         rain = randint(0, 100)
-        pressure = 29+random()
-        data={'device_id': device_id, 'temperature': temperature, 'pressure': pressure, 'humidity': humidity, 'rain': rain}
-        t=threading.Thread(target=send_forward, args=(data))
+        pressure = 29+round(random(), 2)
+        data=json.dumps({"device_id": device_id, "temperature": temperature, "pressure": pressure, "humidity": humidity, "rain": rain})
+        t=threading.Thread(target=send_forward, args=(data, ))
         t.start()
         time.sleep(1)
 

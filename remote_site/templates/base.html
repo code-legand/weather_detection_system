@@ -9,12 +9,19 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+    </script>
     <style>
         
     </style>
     <title>Weather App</title>
 </head>
 <body>
+    <video autoplay muted loop id="myVideo">
+        <source src="{% static 'background/background2.mp4' %}" type="video/mp4">
+    </video>
     {% block body %}
     
     {% endblock body %}
