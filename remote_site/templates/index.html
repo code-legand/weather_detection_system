@@ -3,31 +3,37 @@
 {% block body %}
 
 <div class="content">
-    <div class="container-fluid"
-        style="min-height: 100vh; font-family: 'Courier Montserrat', Courier, monospace;">
+    <div class="container-fluid" style="min-height: 100vh; font-family: 'Courier Montserrat', Courier, monospace;">
         <div class="row" style="min-height: 100vh;">
             <div class="col-sm-4 col-12 border-end text-end" style="min-height: 100vh;">
                 <div class="container d-flex align-content-between flex-wrap p-4 pe-0" style="min-height: 100vh;">
                     <div class="row w-100 bg-dark">
                         <div class="col-12 border-bottom">
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2 border-0 text-light" type="search" placeholder="Device ID"
-                                    aria-label="Device ID" style="box-shadow: none; background-color: transparent;">
+                            <div class="d-flex" role="search" action="/">
+                                <input class="form-control me-2 border-0 text-light" id="device_id" type="search"
+                                    placeholder="Device ID" aria-label="Device ID"
+                                    style="box-shadow: none; background-color: transparent;">
                                 <button class="btn btn-outline-light border-0" type="submit"><i
                                         class="fas fa-search"></i></button>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="row w-100">
+                    <div class="row w-100" id="temperature_section" style="visibility: hidden">
                         <div class="col-12">
-                            <span class="fw-semibold" style="font-size: 10vw;" id="temperature">89</span><span
-                                class="fw-light" id="unitSym" style="font-size: 6vw;">°F</span>
+                            <span class="fw-semibold" style="font-size: 10vw;" id="temperature"></span><span
+                                class="fw-light unitSym" style="font-size: 6vw;">°F</span>
+                        </div>
+                        <div>
+                            <button class="btn btn-dark border border-dark-subtle rounded-pill w-75 mb-2"
+                                id="unitButton" onclick="changeUnit()" style="margin-top: -8px;">View in Celsius</button>
                         </div>
                         <div class="col-12">
                             <div class="container p-0">
                                 <div class="row">
-                                    <div class="col-6 m-0"><span>Low </span><span>80</span><span>°F</span></div>
-                                    <div class="col-6 m-0"><span>High </span><span>90</span><span>°F</span></div>
+                                    <div class="col-6 m-0"><span>Low </span><span id="minTemp"></span><span
+                                            class="unitSym">°F</span></div>
+                                    <div class="col-6 m-0"><span>High </span><span id="maxTemp"></span><span
+                                            class="unitSym">°F</span></div>
                                 </div>
                             </div>
                         </div>
@@ -40,9 +46,9 @@
                     <div class="row w-100">
                         <div class="col-12">
                             <h3 class="fw-semibold">Creators</h3>
-                            <p class="fw-light m-0">Lorem ipsum</p>
-                            <p class="fw-light m-0">Dolor sit amet</p>
-                            <p class="fw-light m-0">Consectetur adipiscing elit</p>
+                            <p class="fw-light m-0">SHAILESH KUMAR</p>
+                            <p class="fw-light m-0">PRANAV P SHETTY</p>
+                            <p class="fw-light m-0">RYAN D SOUZA</p>
                         </div>
                     </div>
                 </div>
@@ -54,34 +60,29 @@
                             Weather Detection System
                         </div>
                     </div>
-                    <div class="row w-100">
-                        <div class="col-12 fw-semibold display-3">
-                            Light Rain Shower
+                    <div class="row w-100" id="weather_section" style="visibility: hidden;">
+                        <div class="col-12 fw-semibold display-3" id="weather">
                         </div>
-                        <div class="col-12 mt-3">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis laborum blanditiis,
-                            cupiditate pariatur ut accusantium, adipisci, quam officiis porro maxime sapiente reiciendis
-                            rem eveniet asperiores ex! Molestias ipsam alias ipsum?
+                        <div class="col-12 mt-3" id="weatherNote">
                         </div>
                     </div>
-                    <div class="row w-100">
+                    <div class="row w-100" id="humidity_pressure_rain_section" style="visibility: hidden;">
                         <div class="col-12 col-sm-6 col-md-4 p-3">
                             <div class="col-12 w-100 fw-semibold fs-2 border-bottom mb-2">
                                 Humidity
                             </div>
                             <div class="container p-0">
                                 <div class="row">
-                                    <div class="col-6 m-0"><span>Low </span><span>50</span><span>%</span></div>
-                                    <div class="col-6 m-0"><span>High </span><span>60</span><span>%</span></div>
+                                    <div class="col-6 m-0"><span>Low </span><span id="minHum"></span></div>
+                                    <div class="col-6 m-0"><span>High </span><span id="maxHum"></span></div>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="w-100" style="height: 25vh;">
-                                    <div id="humidity_chart_div" style="max-height: 25vh;"></div>
+                                <div class="w-100" style="height: 28vh;">
+                                    <div id="humidity_chart_div" style="max-height: 28vh;"></div>
                                 </div>
                             </div>
-                            <div class="col-12 fs-3">
-                                55%
+                            <div class="col-12 fs-3" id="humidity">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 p-3">
@@ -90,17 +91,16 @@
                             </div>
                             <div class="container p-0">
                                 <div class="row">
-                                    <div class="col-6 m-0"><span>Low </span><span>29.0</span><span>in</span></div>
-                                    <div class="col-6 m-0"><span>High </span><span>30.0</span><span>in</span></div>
+                                    <div class="col-6 m-0"><span>Low </span><span id="minPres"></span></div>
+                                    <div class="col-6 m-0"><span>High </span><span id="maxPres"></span></div>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="w-100" style="height: 25vh;">
-                                    <div id="pressure_chart_div" style="max-height: 25vh;"></div>
+                                <div class="w-100" style="height: 28vh;">
+                                    <div id="pressure_chart_div" style="max-height: 28vh;"></div>
                                 </div>
                             </div>
-                            <div class="col-12 fs-3">
-                                29.5%
+                            <div class="col-12 fs-3" id="pressure">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 mx-auto p-3">
@@ -109,17 +109,16 @@
                             </div>
                             <div class="container p-0">
                                 <div class="row">
-                                    <div class="col-6 m-0"><span>Low </span><span>0</span><span>%</span></div>
-                                    <div class="col-6 m-0"><span>High </span><span>100</span><span>%</span></div>
+                                    <div class="col-6 m-0"><span>Low </span><span id="minRain"></span></div>
+                                    <div class="col-6 m-0"><span>High </span><span id="maxRain"></span></div>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="w-100" style="height: 25vh;">
-                                    <div id="rain_chart_div" style="max-height: 25vh;"></div>
+                                <div class="w-100" style="height: 28vh;">
+                                    <div id="rain_chart_div" style="max-height: 28vh;"></div>
                                 </div>
                             </div>
-                            <div class="col-12 fs-3">
-                                20%
+                            <div class="col-12 fs-3" id="rain">
                             </div>
                         </div>
                     </div>
@@ -130,5 +129,3 @@
 </div>
 
 {% endblock body %}
-
-  
