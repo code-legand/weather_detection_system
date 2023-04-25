@@ -140,5 +140,5 @@ CORS_ORIGIN_ALLOW_ALL = True
 #     'http://localhost:5000',
 # ]
 
-CSRF_TRUSTED_ORIGINS = ['weatherdetectionsystem-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://weatherdetectionsystem-production.up.railway.app']
 
