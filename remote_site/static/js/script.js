@@ -74,7 +74,6 @@ function myTimer() {
     XMLrequest.open('POST', 'send/', true);
     XMLrequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     XMLrequest.setRequestHeader('X-CSRFToken', csrftoken);
-    console.log(csrftoken);
     XMLrequest.send('device_id=' + device_id);
     XMLrequest.onreadystatechange = function () {
       if (XMLrequest.readyState == 4 && XMLrequest.status == 200) {

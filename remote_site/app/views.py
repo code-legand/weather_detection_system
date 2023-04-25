@@ -3,6 +3,7 @@ from django.http import JsonResponse, FileResponse
 import json
 import datetime
 import os
+from django.views.decorators.csrf import csrf_exempt
 
 from cloudant.client import Cloudant
 
@@ -18,6 +19,7 @@ db = client['iot_data']
 def index(request):
     return render(request, 'index.html')
 
+@csrf_exempt
 def send(request):
     device_id = request.POST.get('device_id')
     result = db.get_query_result(selector={'device_id': {'$eq': device_id}}, 
