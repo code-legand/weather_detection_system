@@ -71,7 +71,7 @@ document.getElementById('device_id').addEventListener('input', (e) => {
 let myVar = setInterval(myTimer, 5000);
 function myTimer() {
   try {
-    XMLrequest.open('POST', BASE_URL + '/send/', true);
+    XMLrequest.open('POST', 'send/', true);
     XMLrequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     XMLrequest.setRequestHeader('X-CSRFToken', csrftoken);
     XMLrequest.send('device_id=' + device_id);
