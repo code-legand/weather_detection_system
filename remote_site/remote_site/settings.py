@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-=(p$e&8r!-5$+jg3q03(@par$2!g0*4g%&t2#et$p2-d!djps%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['weatherdetectionsystem-production.up.railway.app']
 
 
 # Application definition
@@ -139,3 +139,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ORIGIN_WHITELIST = [
 #     'http://localhost:5000',
 # ]
+
+CSRF_TRUSTED_ORIGINS = ['weatherdetectionsystem-production.up.railway.app']
+
