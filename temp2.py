@@ -37,7 +37,7 @@ weather_map_table = {1: 'Mostly Cloudy', 2: 'Fair', 3: 'Partly Cloudy', 4: 'Clou
 # IBM Watson IOT
 device_type = "RaspberryPi"
 device_id = "Device0001"
-org_id = "flhgbn"
+org_id = "1w95zu"
 
 url = "{}.messaging.internetofthings.ibmcloud.com".format(org_id)
 port = 8883

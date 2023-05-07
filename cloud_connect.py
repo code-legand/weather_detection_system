@@ -5,7 +5,7 @@ import json
 
 device_type = "RaspberryPi"
 device_id = "Device0001"
-org_id = "flhgbn"
+org_id = "1w95zu"
 
 url = "{}.messaging.internetofthings.ibmcloud.com".format(org_id)
 port = 8883
@@ -36,13 +36,19 @@ client.on_disconnect = on_disconnect
 client.on_publish = on_publish
 
 # debug line
-#client.on_log = on_log
+client.on_log = on_log
+client.username_pw_set(username=username, password=token)
+client.tls_set()
+client.connect(url, port, 60)
+# client.loop_start()
 
-try:
-    client.username_pw_set(username=username, password=token)
-    client.tls_set()
-    client.connect(url, port, 60)
-    client.loop_start()
+data = json.dumps({'data':"Hello World"})
+while data!="quit":
+    data = json.dumps({'data':data})
+    (rc, mid) = client.publish(topic_name, payload=data)
+    data = input()
+# try:
+    
 
 # =============================================================================
 #     # options = wiotp.sdk.application.parseEnvVars()
@@ -94,18 +100,20 @@ try:
 #     rule2 = connector.rules.createStateRule(name="allstate", destinationName="state", logicalInterfaceId="640a20e0ab911a1e9927f94b")
 #         
 # =============================================================================
-    string = input("Enter the data: ")
-    while string!="quit":
-        data = json.dumps({'data':string})
-        (rc, mid) = client.publish(topic_name, payload=data)
-        string = input("Enter the data: ")
+#     string = input("Enter the data: ")
+#     while string!="quit":
+#         data = json.dumps({'data':string})
+#         (rc, mid) = client.publish(topic_name, payload=data)
+#         string = input("Enter the data: ")
 
-except KeyboardInterrupt:
-        client.loop_stop()
-        client.disconnect()
-except Exception as e:
-    print("Connection failed:", e)
+# except KeyboardInterrupt:
+#         client.loop_stop()
+#         client.disconnect()
+# except Exception as e:
+#     print("Connection failed:", e)
 
 
-client.loop_stop()
+
+
+# client.loop_stop()
 client.disconnect()

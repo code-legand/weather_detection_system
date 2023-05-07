@@ -1,61 +1,46 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Mar 12 14:55:08 2023
-
-@author: user
-"""
-
-from socket import *
+import paho.mqtt.client as mqtt
 import json
-from datetime import datetime
-import threading
 
-serversocket=socket(AF_INET, SOCK_STREAM)
+device_type = "RaspberryPi"
+device_id = "Device0001"
+org_id = "1w95zu"
 
-try:
-    serversocket.bind(('localhost', 8000))
-    serversocket.listen(5)
-    print("serving from localhost:8000")
-except:
-    print("Connection Error")
-    quit()
+mqtt_broker = "{}.messaging.internetofthings.ibmcloud.com".format(org_id)
+mqtt_port = 8883
+mqtt_username = "use-token-auth"
+mqtt_token = "Device0001"
 
-def send_data(data):   
-    try:
-        # listen for 5 seconds and then quit
-        # serversocket.settimeout(5)
-        (clientsocket, address)=serversocket.accept()
-        rawdata=clientsocket.recv(1024).decode()
-        info=rawdata.split('\r\n')
-        if len(info)>0:
-            for i in info:
-                print(i.strip('\r\n'))
-        
-        string=data
-        json_data=json.loads(string)
-        json_data["timestamp"]=time
+topic_name = "iot-2/evt/sensor_data/fmt/json"
 
-        data=json.dumps(json_data)
-        
-        clientsocket.sendall(data.encode())
-        clientsocket.shutdown(SHUT_WR)
-    except Exception as e:
-        print(e)
-        serversocket.close()
-        # quit()
-        
+def on_connect(client, userdata, flags, rc):
+    print("Connected to IBM Watson IoT Platform with result code: " + str(rc))
+    client.subscribe(topic_name)
 
-time = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f%z")
-data='{"device_id": "Device0001", "temperature": 85, "pressure": 29.5, "rain": 0, "humidity": 55}'
+def on_disconnect(client, userdata, rc):
+    print("Disconnected from IBM Watson IoT Platform")
 
-for i in range(3):
-    t=threading.Thread(target=send_data, args=(data,))
-    t.start()
+def on_message(client, userdata, msg):
+    print("Received message: " + msg.payload.decode())
 
-    
-print("Done")
+# Create the MQTT client instance
+client = mqtt.Client(client_id=device_id)
+client.username_pw_set(mqtt_username, password=mqtt_token)
 
+# Set the callbacks
+client.on_connect = on_connect
+client.on_disconnect = on_disconnect
+client.on_message = on_message
 
+# Connect to the MQTT broker
+client.connect(mqtt_broker, mqtt_port, 60)
 
+# Start the MQTT client loop (non-blocking)
+client.loop_start()
 
+# Publish a message to the device
+message = json.dumps({'data': 'Hello World'})
+client.publish(topic_name, payload=message)
 
+# Disconnect from the MQTT broker
+client.loop_stop()
+client.disconnect()
