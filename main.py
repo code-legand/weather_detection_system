@@ -158,7 +158,7 @@ try:
         if ser.inWaiting()>0:
             line = ser.readline().decode().strip()
             print("Data from arduino:", line)
-            t=threading.Thread(target=send_forward, args=(data))
+            t=threading.Thread(target=send_forward, args=(data, ))
             t.start()
         
 except Exception as e:

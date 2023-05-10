@@ -26,7 +26,7 @@ function changeUnit() {
 let myVar = setInterval(myTimer, 1000);
 function myTimer() {
     var XMLrequest = new XMLHttpRequest();
-    XMLrequest.open('GET', 'http://192.168.1.101:5000/send', true);
+    XMLrequest.open('GET', 'http://192.168.3.56:5000/send', true);
     XMLrequest.send();
     XMLrequest.onreadystatechange = function () {
         if (XMLrequest.readyState == 4 && XMLrequest.status == 200) {
